@@ -12,3 +12,7 @@ Code revised to work on an ESP8266 instead of Arduino + RTC. The code has been r
 
 Also, allows for changing colours using MQTT and OpenHAB. This takes the default values from a color slider in OpenHAB (HSV values) and no rules are required to convert HSV to RGB.
 
+Make sure you're using this branch of the pubsubclient:
+
+https://github.com/Imroy/pubsubclient
+
