@@ -29,7 +29,7 @@ void setup() {
   FastLED.addLeds<WS2812B, DATA_PIN, GRB>(leds, NUM_LEDS);
   currentPalette = PartyColors_p;
   // currentPalette = RainbowColors_p;
-  currentBlending = BLEND;
+  currentBlending = LINEARBLEND;
   if (EEPROM.read(99) != 1){               // Check if colours have been set or not
     EEPROM.write(0,255);                   // Seconds Colour - R-G-B - White
     EEPROM.write(1,255);
@@ -85,7 +85,7 @@ void setup() {
   sCmd.addCommand("RAINBOW", effects);
   sCmd.addCommand("MISSED", missedCall);
   sCmd.addCommand("MISSEDOFF", missedOff);
-  sCmd.addDefaultHandler(effects);
+  sCmd.setDefaultHandler(effects);
   
   // ********** Set all LEDs to background colour
   fill_solid(leds, NUM_LEDS, bg);
@@ -103,7 +103,7 @@ void loop() {
     static uint8_t startIndex = 0;
     startIndex = startIndex + 1;
     currentPalette = RainbowStripeColors_p;
-    currentBlending = BLEND;
+    currentBlending = LINEARBLEND;
     FillLEDsFromPaletteColors( startIndex);
     FastLED.show();
     FastLED.delay(1000 / UPDATES_PER_SECOND);
